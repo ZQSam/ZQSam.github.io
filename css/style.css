@@ -364,6 +364,17 @@ span {
   flex-wrap: wrap;
 }
 
+/* new added animation */
+/* .input-box {
+  font-size: 1.25rem;
+  position: relative;
+  --primary: #2196f3;
+}
+
+.input-name {
+
+} */
+
 textarea:focus,
 input:focus {
   border:0.2rem solid var(--main-color)
