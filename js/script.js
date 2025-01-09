@@ -68,3 +68,20 @@ const typed = new Typed('.multiple-text', {
   backDelay: 1000,
   loop: true
 });
+
+// dark mode toggle
+const toggle = document.querySelector('#dark-mode-toggle');
+toggle.addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+    toggle.innerHTML = document.body.classList.contains('dark-mode') ? '<i class="bx bx-sun"></i>' : '<i class="bx bx-moon"></i>';
+});
+
+// smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+      e.preventDefault();
+      document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+      });
+  });
+});

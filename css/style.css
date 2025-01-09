@@ -21,6 +21,13 @@
   /* --main-color: #9acd32; */
 }
 
+body.dark-mode {
+  --bg-color: #181818;
+  --second-bg-color: #282828;
+  --text-color: #e0e0e0;
+  --main-color: #0ef;
+}
+
 html {
   font-size: 62.5%;
   overflow-x: hidden;
@@ -183,6 +190,8 @@ span {
 
 .btn:hover {
   box-shadow: none;
+  transform: scale(1.1);
+  transition: all 0.3s ease-in-out;
 }
 
 .about {
@@ -295,6 +304,11 @@ span {
 .portfolio-box img {
   width: 100%;
   transition: 0.5s ease;
+}
+
+.portfolio-box:hover {
+  transform: scale(1.05);
+  transition: transform 0.3s ease-in-out;
 }
 
 .portfolio-box:hover img {
