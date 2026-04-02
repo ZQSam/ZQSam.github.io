@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Personal portfolio of Zijie Qiu showcasing programming, photography, and design skills.">
+  <meta name="keywords" content="Zijie Qiu, portfolio, programming, photography, projects, UCSD">
+  <meta name="author" content="Zijie Qiu">
+  <meta property="og:title" content="Zijie Qiu | Personal Portfolio">
+  <meta property="og:description" content="AI and Machine Learning Enthusiast - Explore projects on AI, ML, and web development.">
+  <meta property="og:image" content="assets//pfp.jpg">
+  <meta property="og:url" content="https://zqsam.github.io">
+  <meta property="og:type" content="website">
+
+  <title>Zijie Qiu</title>
+
+  <!-- web icon -->
+  <link rel="icon" type="image/jpg" href="assets//favicon.ico">
+
+  <!-- box icons -->
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- custom css will be injected by Webpack -->
+</head>
+<body>
+  <!-- header design -->
+  <header class="header">
+    <a href="#" class="logo">Sam's Basement</a>
+
+    <i class='bx bx-menu' id="menu-icon"></i>
+
+    <nav class="navbar">
+      <a href="#home" class="active">Home</a>
+      <a href="#about">About</a>
+      <a href="#lifestyles">Lifestyles</a>
+      <a href="#portfolio">Portfolio</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <!-- Dark Mode Toggle Button with Icon -->
+    <button id="dark-mode-toggle" class="btn">
+      <i class='bx bx-moon'></i>
+    </button>
+  </header>
+
+  <!-- home section design -->
+  <section class="home" id="home">
+    <video id="home-bg-video" class="home-bg-video" src="assets/bg-video.mp4" muted playsinline loop preload="auto" aria-hidden="true"></video>
+    <div class="home-content">
+      <h3>Hello, My name is</h3>
+      <h1>Zijie Qiu</h1>
+      <h3>And I'm a <span class="multiple-text"></span></h3>
+      <p>You may call me <span>Sam</span> as I go by this English name!</p>
+      <div class="social-media">
+        <a href="https://www.linkedin.com/in/zijie-qiu-21209a265" target="_blank">
+          <i class='bx bxl-linkedin' ></i>
+        </a>
+        
+        <a href="https://www.instagram.com/sleepyrat_qiu/" target="_blank">
+          <i class='bx bxl-instagram' ></i>
+        </a>
+
+        <a href="https://github.com/ZQSam" target="_blank">
+          <i class='bx bxl-github'></i>
+        </a>
+
+        <a href="#" id="icon-link">
+          <i class="fa fa-wechat"></i>
+        </a>
+      </div>
+      <!-- <a href="#" class="btn">Download CV</a> -->
+    </div>
+    <!-- Art Creator Gallery (moved into the lifestyles box) -->
+
+    <div id="image-popup">
+      <img src="./assets//wechatQRcode.JPG" alt="WeChat QR code">
+    </div>
+    
+    <div class="home-img">
+      <img src="assets//pfp.jpg" alt="homepage-picture" loading="lazy">
+    </div>
+  </section>
+
+  <!-- about section design -->
+  <section class="about" id="about">
+    <div class="about-img">
+      <img src="assets//about.JPG" alt="about">
+    </div>
+
+    <div class="about-content">
+      <h2 class="heading">About <span>Me</span></h2>
+      <h3>Academic and Professional Journey</h3>
+      <p>
+        I am currently pursuing a Master's degree in <span>Computer Science</span> at the <span>University of Illinois at Urbana-Champaign (UIUC)</span>, having previously earned my Bachelor's in Mathematics-Computer Science from UC San Diego. 
+        <br /><br />
+        My technical focus lies at the intersection of machine learning and autonomous systems, with a particular interest in navigation, reinforcement learning, and state abstraction. I enjoy tackling complex, system-level challenges, drawing on my backend engineering experience at Vipshop and OfSpectrum, where I designed scalable e-commerce features and built robust event notification systems from the ground up.
+        <br /><br />
+        Whether I am developing full-stack web platforms, exploring C++ game development, or serving as a teaching assistant for advanced data structures, I am driven by a passion for building accessible, data-driven solutions that bridge the gap between theoretical algorithms and real-world applications.
+      </p>
+      <!-- <a href="#" class="btn">Read More</a> -->
+    </div>
+  </section>
+
+  <!-- lifestyle section design -->
+  <section class="lifestyles" id="lifestyles">
+    <h2 class="heading">My <span>Lifestyles</span></h2>
+
+    <div class="lifestyles-container">
+      <div class="lifestyles-box">
+        <i class='bx bx-code-block'></i>
+        <h3>Programmer</h3>
+        <p>I have developed strong programming skills in languages such as Java, Python, C++, and JavaScript, 
+          along with web development frameworks like React and Vue. My work ranges from building scalable 
+          applications to implementing advanced algorithms for AI and machine learning models.
+        </p>
+        <!-- <a href="#" class="btn">Read More</a> -->
+      </div>
+
+      <div class="lifestyles-box" data-gallery="art">
+        <i class='bx bxs-camera' ></i>
+        <h3>Art Creator</h3>
+        <p>
+          Beyond programming, I am passionate about visual storytelling through photography and videography. 
+          My creative projects allow me to experiment with different mediums and share compelling narratives.</p>
+        <!-- Read More opens the in-section gallery/carousel -->
+        <button class="btn read-more" data-gallery="art">Read More</button>
+        <!-- Art Creator Gallery (markup kept here for authoring) -->
+        <div id="lifestyles-gallery" class="gallery-overlay" aria-hidden="true">
+          <div class="gallery-container">
+            <button class="gallery-arrow left" aria-label="Previous slide">‹</button>
+            <div class="gallery-slides">
+              <div class="slide" data-index="0">
+                <img src="assets//4.jpeg" alt="Slide 1">
+              </div>
+              <div class="slide" data-index="1">
+                <img src="assets//5.png" alt="Slide 2">
+              </div>
+              <div class="slide" data-index="2">
+                <img src="assets//3.png" alt="Slide 3">
+              </div>
+            </div>
+            <button class="gallery-arrow right" aria-label="Next slide">›</button>
+          </div>
+          <div class="gallery-dots"></div>
+        </div>
+      </div>
+
+      <div class="lifestyles-box">
+        <i class='bx bxs-graduation' ></i>
+        <h3>Leader & Mentor</h3>
+        <p>
+          As a tutor and CSSA committee member, I have supported my peers through mentorship and leadership roles, 
+          demonstrating my commitment to fostering learning communities and promoting collaboration.</p>
+        <!-- <a href="#" class="btn">Read More</a> -->
+      </div>
+
+      <!-- <div class="lifestyles-box">
+        <i class='bx bx-comment-x'></i>
+        <h3>Mistake Maker</h3>
+        <p>If you ever ask me how to learn something, I would say 
+          "learn by your mistakes".</p>
+        <a href="#" class="btn">Read More</a>
+      </div> -->
+      
+    </div>
+  </section>
+
+  <!-- portfolio section design -->
+  <section class="portfolio" id="portfolio">
+    <h2 class="heading">Latest <span>Project</span></h2>
+    <div class="portfolio-container">
+      <div class="portfolio-box">
+        <img src="assets//First Project Pic.jpg" alt="1">
+        <div class="portfolio-layer">
+          <h4>Line Following Robot</h4>
+          <p>A line following robot that can follow a black line on a white background.</p>
+          <a href="https://sites.google.com/ucsd.edu/ece5-finalproject/home" target="_blank">
+            <i class='bx bx-link'></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="portfolio-box">
+        <img src="assets//fake_news_fb_event_cover.png" alt="2">
+        <div class="portfolio-layer">
+          <h4>Fake News Detection</h4>
+          <p>A machine learning model that can detect fake news articles.</p>
+          <a href="https://github.com/ZQSam/Fake-News-Detection" target="_blank">
+            <i class='bx bx-link'></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="portfolio-box">
+        <img src="assets//scavengerHunt.jpg" alt="3">
+        <div class="portfolio-layer">
+          <h4>Scavenger Hunt Game</h4>
+          <p>A game that encourages players to find as many items as possible in a limited time.</p>
+          <a href="https://github.com/jel084/CSE-110-Team-2" target="_blank">
+            <i class='bx bx-link'></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- <div class="portfolio-box">
+        <img src="assets//4.jpeg" alt="4">
+        <div class="portfolio-layer">
+          <h4>Project 4</h4>
+          <p>Not available at this moment.</p>
+          <a href="#"><i class='bx bx-link'></i></a>
+        </div>
+      </div>
+
+      <div class="portfolio-box">
+        <img src="assets//5.png" alt="5">
+        <div class="portfolio-layer">
+          <h4>Project 5</h4>
+          <p>Not available at this moment.</p>
+          <a href="#"><i class='bx bx-link'></i></a>
+        </div>
+      </div>
+
+      <div class="portfolio-box">
+        <img src="assets//6.jpeg" alt="6">
+        <div class="portfolio-layer">
+          <h4>Project 6</h4>
+          <p>Not available at this moment.</p>
+          <a href="#"><i class='bx bx-link'></i></a>
+        </div>
+      </div> -->
+    </div>
+  </section>
+
+  <!-- contact section design -->
+  <section class="contact" id="contact">
+    <h2 class="heading">Contact <span>Me</span></h2>
+
+    <form 
+      action="https://formspree.io/f/mayryzpn" 
+      method="POST">
+      <div class="input-box">
+        <input class="input-name" type="text" name="full-name" autocomplete="off" placeholder="Full Name" required>
+        <!-- <label for="full-name" class="text-label">Full Name</label> -->
+        
+        <input type="email" name="email" autocomplete="off" placeholder="Email Address" required>
+        <input type="number" name="phone" autocomplete="off" placeholder="Mobile Number" required>
+        <input type="text" name="title" autocomplete="off" placeholder="Email Subject" required>
+      </div>
+      <textarea class="contact-form-textarea" name="textarea" cols="30" rows="10" 
+      placeholder="Your Message" autocomplete="off" required></textarea>
+      <input type="hidden" name="_language" value="en" />
+      <input type="submit" name="submit-btn" value="Send Message" class="btn">
+    </form>
+  </section>
+
+  <!-- footer design -->
+  <footer class="footer">
+    <div class="footer-text">
+      <p>Copyright &copy; 2025 by Zijie | All Rights Reserved.</p>
+    </div>
+
+    <div class="footer-iconTop">
+      <a href="#home"><i class='bx bxs-chevron-up' ></i></a>
+    </div>
+  </footer>
+
+  <!-- scroll reveal -->
+  <script src="https://unpkg.com/scrollreveal"></script>
+
+  <!-- typed js -->
+  <script src="https://unpkg.com/typed.js@2.0.15/dist/typed.umd.js"></script>
+
+  <!-- custom js will be injected by Webpack -->
+</body>
+</html>
