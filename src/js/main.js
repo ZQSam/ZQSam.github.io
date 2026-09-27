@@ -1,191 +1,180 @@
-/* Your JS here. */
-let menuIcon = document.querySelector('#menu-icon');
-let navbar = document.querySelector('.navbar');
+const root = document.documentElement;
+const themeButton = document.querySelector(".theme-toggle");
 
-menuIcon.onclick = () => {
-  menuIcon.classList.toggle('bx-x');
-  navbar.classList.toggle('active');
-};
-
-// scroll sections active link
-let sections = document.querySelectorAll('section');
-let navLinks = document.querySelectorAll('header nav a');
-
-window.onscroll = () => {
-  sections.forEach(sec => {
-    let top = window.scrollY;
-    let offset = sec.offsetTop - 150;
-    let height = sec.offsetHeight;
-    let id = sec.getAttribute('id');
-
-    if(top >= offset && top < offset + height) {
-      navLinks.forEach(links => {
-        links.classList.remove('active');
-        document.querySelector('header nav a[href*=' + id + ']').classList.add('active');
-      });
-    };
-  });
-  // sticky navbar
-  let header = document.querySelector('header');
-  const scrolled = window.scrollY > 100;
-
-  header.classList.toggle('sticky', scrolled);
-  header.classList.toggle('big', !scrolled);
-
-  menuIcon.classList.remove('bx-x');
-  navbar.classList.remove('active');
-};
-
-// initialize header size on load
-window.addEventListener('load', () => {
-  const header = document.querySelector('header');
-  if (window.scrollY <= 100) {
-    header.classList.add('big');
-  } else {
-    header.classList.remove('big');
+function setTheme(theme) {
+  root.dataset.theme = theme;
+  const label = `Switch to ${theme === "dark" ? "light" : "dark"} theme`;
+  themeButton?.setAttribute("aria-label", label);
+  themeButton?.setAttribute("title", label);
+  document
+    .querySelector('meta[name="theme-color"]')
+    ?.setAttribute("content", theme === "dark" ? "#101413" : "#f5f6f1");
+}
+// Restricted browser contexts may not allow local storage.
+try {
+  const savedTheme = localStorage.getItem("zq-theme");
+  if (savedTheme === "light" || savedTheme === "dark") setTheme(savedTheme);
+} catch (_) {
+  /* Keep the default theme. */
+}
+themeButton?.addEventListener("click", () => {
+  const theme = root.dataset.theme === "dark" ? "light" : "dark";
+  setTheme(theme);
+  try {
+    localStorage.setItem("zq-theme", theme);
+  } catch (_) {
+    /* Applies for this visit. */
   }
-  // background video fade-in when ready
-  const bgVideo = document.getElementById('home-bg-video');
-  if (bgVideo) {
-    const tryShow = () => {
-      bgVideo.play().catch(() => {});
-      setTimeout(() => bgVideo.classList.add('visible'), 700);
-    };
+});
 
-    if (bgVideo.readyState >= 3) {
-      tryShow();
-    } else {
-      const onCanPlay = () => {
-        tryShow();
-        bgVideo.removeEventListener('canplay', onCanPlay);
-      };
-      bgVideo.addEventListener('canplay', onCanPlay);
+const menuButton = document.querySelector(".menu-toggle");
+const nav = document.querySelector(".navbar");
+function closeMenu(returnFocus = false) {
+  nav?.classList.remove("is-open");
+  menuButton?.setAttribute("aria-expanded", "false");
+  menuButton?.setAttribute("aria-label", "Open navigation");
+  if (returnFocus) menuButton?.focus();
+}
+menuButton?.addEventListener("click", () => {
+  const open = menuButton.getAttribute("aria-expanded") !== "true";
+  nav?.classList.toggle("is-open", open);
+  menuButton.setAttribute("aria-expanded", String(open));
+  menuButton.setAttribute(
+    "aria-label",
+    open ? "Close navigation" : "Open navigation"
+  );
+});
+nav
+  ?.querySelectorAll("a")
+  .forEach((link) => link.addEventListener("click", () => closeMenu()));
+document.addEventListener("click", (event) => {
+  if (!event.target.closest(".header")) closeMenu();
+});
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape" && nav?.classList.contains("is-open"))
+    closeMenu(true);
+});
+window.matchMedia("(min-width: 801px)").addEventListener("change", (event) => {
+  if (event.matches) closeMenu();
+});
 
-      // safety fallback: if 'canplay' never fires, still reveal after 3s
-      setTimeout(() => bgVideo.classList.add('visible'), 3000);
+const sectionLinks = [...document.querySelectorAll('.navbar a[href^="#"]')];
+const sections = sectionLinks
+  .map((link) => document.getElementById(link.hash.slice(1)))
+  .filter(Boolean);
+let scrollPending = false;
+function updateActiveSection() {
+  const scrollableHeight =
+    document.documentElement.scrollHeight - window.innerHeight;
+  const progress = scrollableHeight > 0 ? window.scrollY / scrollableHeight : 0;
+  root.style.setProperty(
+    "--scroll-progress",
+    Math.max(0, Math.min(1, progress))
+  );
+  const threshold = window.scrollY + 150;
+  let currentId = "";
+  sections.forEach((section) => {
+    if (section.offsetTop <= threshold) currentId = section.id;
+  });
+  sectionLinks.forEach((link) => {
+    const active = link.hash === `#${currentId}`;
+    link.classList.toggle("active", active);
+    if (active) link.setAttribute("aria-current", "location");
+    else link.removeAttribute("aria-current");
+  });
+  scrollPending = false;
+}
+window.addEventListener(
+  "scroll",
+  () => {
+    if (!scrollPending) {
+      scrollPending = true;
+      requestAnimationFrame(updateActiveSection);
     }
-  }
+  },
+  { passive: true }
+);
+window.addEventListener("load", updateActiveSection);
+window.addEventListener("resize", updateActiveSection);
+updateActiveSection();
+document.querySelectorAll("[data-year]").forEach((element) => {
+  element.textContent = new Date().getFullYear();
 });
 
-// wechat QR code popup out
-document.getElementById('icon-link').addEventListener('click', function(event){
-  event.preventDefault();
-  var popup = document.getElementById('image-popup');
-  popup.style.display = 'flex';
-});
-
-// Close the popup when clicking anywhere on the screen
-document.getElementById('image-popup').addEventListener('click', function(){
-  this.style.display = 'none';
-});
-
-// scroll reveal
-ScrollReveal({
-  // reset: true,
-  distance: '80px',
-  duration: 2000,
-  delay: 200,
-});
-
-ScrollReveal().reveal('.home-content, .heading', { origin: 'top' });
-ScrollReveal().reveal('.home-img, .lifestyles-container, .portfolio-box, .contact form', { origin: 'bottom' });
-ScrollReveal().reveal('.home-content h1, .about-img', { origin: 'left' });
-ScrollReveal().reveal('.home-content p, .about-content', { origin: 'right' });
-
-// typed js
-const typed = new Typed('.multiple-text', {
-  strings: ['College Student', 'Videographer', 'Photographer','Programmer'],
-  typeSpeed: 50,
-  backSpeed: 50,
-  backDelay: 1000,
-  loop: true
-});
-
-// dark mode toggle
-const toggle = document.querySelector('#dark-mode-toggle');
-toggle.addEventListener('click', () => {
-    document.body.classList.toggle('dark-mode');
-    toggle.innerHTML = document.body.classList.contains('dark-mode') ? '<i class="bx bx-sun"></i>' : '<i class="bx bx-moon"></i>';
-});
-
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function(e) {
-      const href = this.getAttribute('href');
-      // if href is just '#' or empty, don't attempt to querySelector it
-      if (!href || href === '#') return;
-      const target = document.querySelector(href);
-      if (target) {
-          e.preventDefault();
-          target.scrollIntoView({ behavior: 'smooth' });
-      }
-  });
-});
-
-// Lifestyles gallery / carousel logic
-const galleryOverlay = document.getElementById('lifestyles-gallery');
-const gallerySlides = document.querySelectorAll('#lifestyles-gallery .slide');
-const galleryDotsContainer = document.querySelector('#lifestyles-gallery .gallery-dots');
-let currentSlide = 0;
-
+const gallery = document.getElementById("photo-gallery");
+const slides = [...document.querySelectorAll("[data-slide]")];
+const galleryStatus = document.querySelector("[data-gallery-status]");
+let slideIndex = 0;
 function showSlide(index) {
-  if (!gallerySlides.length) return;
-  gallerySlides.forEach(s => s.classList.remove('active'));
-  const idx = (index + gallerySlides.length) % gallerySlides.length;
-  gallerySlides[idx].classList.add('active');
-  currentSlide = idx;
-  // update dots
-  if (galleryDotsContainer) {
-    Array.from(galleryDotsContainer.children).forEach((d,i) => d.classList.toggle('active', i === idx));
-  }
+  if (!slides.length) return;
+  slideIndex = (index + slides.length) % slides.length;
+  slides.forEach((slide, i) => {
+    slide.hidden = i !== slideIndex;
+  });
+  if (galleryStatus)
+    galleryStatus.textContent = `${String(slideIndex + 1).padStart(
+      2,
+      "0"
+    )} / ${String(slides.length).padStart(2, "0")}`;
 }
-
-function openGallery() {
-  if (!galleryOverlay) return;
-  // append overlay to body so it behaves like the WeChat popup (fixed fullscreen)
-  if (galleryOverlay.parentNode !== document.body) document.body.appendChild(galleryOverlay);
-
-  galleryOverlay.classList.add('open');
-  galleryOverlay.setAttribute('aria-hidden', 'false');
-  // lock body scroll while gallery is open
-  document.body.style.overflow = 'hidden';
-  showSlide(0);
-}
-
-function closeGallery() {
-  if (!galleryOverlay) return;
-  galleryOverlay.classList.remove('open');
-  galleryOverlay.setAttribute('aria-hidden', 'true');
-  // restore scrolling
-  document.body.style.overflow = '';
-}
-
-// wire up Read More buttons
-document.querySelectorAll('.read-more').forEach(btn => {
-  btn.addEventListener('click', () => {
-    openGallery();
+document.querySelectorAll("[data-open-dialog]").forEach((button) => {
+  button.addEventListener("click", () => {
+    const dialog = document.getElementById(button.dataset.openDialog);
+    if (!dialog) return;
+    if (dialog === gallery) showSlide(0);
+    dialog.showModal();
+    document.body.classList.add("dialog-open");
   });
 });
-
-// arrows
-document.querySelectorAll('#lifestyles-gallery .gallery-arrow.left').forEach(btn => btn.addEventListener('click', () => showSlide(currentSlide - 1)));
-document.querySelectorAll('#lifestyles-gallery .gallery-arrow.right').forEach(btn => btn.addEventListener('click', () => showSlide(currentSlide + 1)));
-
-// close
-const closeBtn = document.querySelector('#lifestyles-gallery .gallery-close');
-if (closeBtn) closeBtn.addEventListener('click', closeGallery);
-
-// close when clicking the overlay background (but not when clicking the gallery container)
-if (galleryOverlay) {
-  galleryOverlay.addEventListener('click', function(e) {
-    if (e.target === galleryOverlay) closeGallery();
+document.querySelectorAll("dialog").forEach((dialog) => {
+  // Keep Tab navigation inside the dialog, including at either end of its controls.
+  dialog.addEventListener("keydown", (event) => {
+    if (event.key !== "Tab") return;
+    const controls = [
+      ...dialog.querySelectorAll(
+        "button:not([disabled]), a[href], input:not([disabled]), [tabindex='0']"
+      ),
+    ].filter((element) => element.getClientRects().length);
+    const first = controls[0];
+    const last = controls[controls.length - 1];
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last?.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first?.focus();
+    }
   });
-}
-
-// build dots
-if (galleryDotsContainer && gallerySlides.length) {
-  gallerySlides.forEach((_, i) => {
-    const d = document.createElement('button');
-    d.addEventListener('click', () => showSlide(i));
-    galleryDotsContainer.appendChild(d);
+  dialog
+    .querySelector("[data-close-dialog]")
+    ?.addEventListener("click", () => dialog.close());
+  dialog.addEventListener("click", (event) => {
+    const bounds = dialog.getBoundingClientRect();
+    if (
+      event.target === dialog &&
+      (event.clientX < bounds.left ||
+        event.clientX > bounds.right ||
+        event.clientY < bounds.top ||
+        event.clientY > bounds.bottom)
+    )
+      dialog.close();
   });
-}
+  dialog.addEventListener("close", () => {
+    document.body.classList.toggle(
+      "dialog-open",
+      Boolean(document.querySelector("dialog[open]"))
+    );
+  });
+});
+document
+  .querySelector("[data-gallery-prev]")
+  ?.addEventListener("click", () => showSlide(slideIndex - 1));
+document
+  .querySelector("[data-gallery-next]")
+  ?.addEventListener("click", () => showSlide(slideIndex + 1));
+gallery?.addEventListener("keydown", (event) => {
+  if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
+    event.preventDefault();
+    showSlide(slideIndex + (event.key === "ArrowRight" ? 1 : -1));
+  }
+});

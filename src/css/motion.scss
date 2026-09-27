@@ -1,0 +1,301 @@
+// Motion is an enhancement. The default styles remain the fully visible page.
+.motion-toggle {
+  border-color: transparent;
+  svg {
+    width: 17px;
+    height: 17px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.7;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  &:disabled {
+    cursor: default;
+    color: var(--muted);
+  }
+}
+.motion-play {
+  display: none;
+}
+:root:not([data-motion="running"]) .motion-toggle {
+  .motion-pause {
+    display: none;
+  }
+  .motion-play {
+    display: block;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  :root[data-motion="running"] {
+    .header::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 -1px;
+      height: 2px;
+      background: var(--accent);
+      transform: scaleX(var(--scroll-progress, 0));
+      transform-origin: left;
+      pointer-events: none;
+    }
+    .navbar a {
+      position: relative;
+      &::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 5px;
+        height: 1px;
+        background: var(--accent);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.3s ease;
+      }
+      &:hover::after,
+      &:focus-visible::after,
+      &.active::after {
+        transform: scaleX(1);
+      }
+    }
+    .system-art {
+      perspective: 900px;
+    }
+    .circuit-art {
+      transform: translate3d(var(--pointer-x, 0px), var(--pointer-y, 0px), 0)
+        rotateX(var(--pointer-rx, 0deg)) rotateY(var(--pointer-ry, 0deg));
+      transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+    .processor {
+      animation: processor-float 6s ease-in-out infinite;
+    }
+    .circuit-signal path {
+      stroke-dasharray: 9 100;
+      animation: signal-travel 3.6s linear infinite;
+    }
+    .circuit-signal path:nth-child(2) {
+      animation-delay: -1.4s;
+    }
+    .circuit-signal path:nth-child(3) {
+      animation-delay: -2.2s;
+    }
+    .circuit-signal path:nth-child(4) {
+      animation-delay: -0.6s;
+    }
+    .circuit-signal path:nth-child(5) {
+      animation-delay: -2.8s;
+    }
+    .market-bars path {
+      transform-box: fill-box;
+      transform-origin: center bottom;
+      animation: market-breathe 3.2s ease-in-out infinite;
+    }
+    .market-bars path:nth-child(2) {
+      animation-delay: -0.5s;
+    }
+    .market-bars path:nth-child(3) {
+      animation-delay: -1.1s;
+    }
+    .market-bars path:nth-child(4) {
+      animation-delay: -1.7s;
+    }
+    .market-bars path:nth-child(5) {
+      animation-delay: -2.3s;
+    }
+    .orbit-dot {
+      animation: signal-pulse 3.6s ease-in-out infinite;
+    }
+    .system-art:not(.motion-visible) .ambient-motion {
+      animation-play-state: paused;
+    }
+    .motion-visible .ambient-motion {
+      animation-play-state: running;
+    }
+    .pipeline-icon {
+      animation: workflow-step 6s ease-in-out infinite;
+      animation-play-state: paused;
+    }
+    .pipeline li:nth-child(2) .pipeline-icon {
+      animation-delay: 2s;
+    }
+    .pipeline li:nth-child(3) .pipeline-icon {
+      animation-delay: 4s;
+    }
+    .motion-visible .pipeline-icon {
+      animation-play-state: running;
+    }
+    .project-card {
+      transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1),
+        border-color 0.3s, box-shadow 0.3s;
+    }
+    .button > span,
+    .text-link > span,
+    .project-copy h3 a > span {
+      display: inline-block;
+      transition: transform 0.25s ease;
+    }
+    .button:hover > span,
+    .button:focus-visible > span,
+    .text-link:hover > span,
+    .text-link:focus-visible > span,
+    .project-copy h3 a:hover > span {
+      transform: translate(3px, -3px);
+    }
+    .theme-toggle svg {
+      transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+    .theme-toggle:hover svg {
+      transform: rotate(60deg);
+    }
+    .media-dialog[open] {
+      animation: dialog-enter 0.28s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+    .media-dialog[open]::backdrop {
+      animation: backdrop-enter 0.25s ease-out;
+    }
+    .gallery-stage figure:not([hidden]) {
+      animation: photo-enter 0.38s ease-out;
+    }
+    .navbar.is-open {
+      animation: menu-enter 0.22s ease-out;
+    }
+  }
+  @media (hover: hover) and (pointer: fine) {
+    :root[data-motion="running"] {
+      .project-card:hover,
+      .project-card:focus-within {
+        transform: translateY(-6px);
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+      }
+      .portrait > img,
+      .creative-photo > img {
+        transition: filter 0.5s ease,
+          transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+      }
+      .portrait:hover > img {
+        transform: translateY(-4px);
+        filter: saturate(1);
+      }
+      .creative-photo:hover > img {
+        transform: translateY(-5px) rotate(-0.6deg);
+      }
+    }
+  }
+}
+
+@keyframes processor-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-7px);
+  }
+}
+@keyframes signal-travel {
+  from {
+    stroke-dashoffset: 109;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes market-breathe {
+  0%,
+  100% {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scaleY(0.62);
+    opacity: 0.55;
+  }
+}
+@keyframes signal-pulse {
+  50% {
+    opacity: 0.25;
+  }
+}
+@keyframes workflow-step {
+  0%,
+  32%,
+  100% {
+    background: transparent;
+    color: var(--accent);
+  }
+  8%,
+  24% {
+    background: var(--accent);
+    color: var(--accent-ink);
+  }
+}
+@keyframes dialog-enter {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+@keyframes backdrop-enter {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes photo-enter {
+  from {
+    opacity: 0.2;
+    transform: translateX(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes menu-enter {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Pause background work when the browser tab is hidden.
+:root[data-page-hidden] .system-art .ambient-motion,
+:root[data-page-hidden] .agent-preview .pipeline-icon {
+  animation-play-state: paused !important;
+}
+
+// Manual pause also suppresses the original hover transitions and smooth scrolling.
+:root[data-motion="paused"],
+:root[data-motion="reduced"] {
+  scroll-behavior: auto;
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+  .button:hover,
+  .project-card:hover img {
+    transform: none;
+  }
+}
+
+@media (max-width: 420px) {
+  .brand-alias {
+    display: none;
+  }
+  .header-controls {
+    gap: 2px;
+  }
+}

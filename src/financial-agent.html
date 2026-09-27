@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Financial Agent by Zijie Qiu: an options-trading copilot connecting AI signal parsing, risk policies, paper trading, and an operational dashboard."
+    />
+    <meta name="author" content="Zijie Qiu" />
+    <meta name="theme-color" content="#101413" />
+    <meta
+      property="og:title"
+      content="Financial Agent | A project by Zijie Qiu"
+    />
+    <meta
+      property="og:description"
+      content="From unstructured trade alerts to a risk-aware, observable workflow. Explore the engineering behind Financial Agent."
+    />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:url"
+      content="https://zqsam.github.io/financial-agent.html"
+    />
+    <link rel="canonical" href="https://zqsam.github.io/financial-agent.html" />
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+    <title>Financial Agent | Zijie Qiu</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="header">
+      <div class="container header-inner">
+        <a class="brand" href="index.html" aria-label="Zijie Qiu, home"
+          ><span class="brand-mark" aria-hidden="true">zq<span>.</span></span
+          ><span>Zijie Qiu<span class="brand-alias"> / Sam</span></span></a
+        >
+        <nav class="navbar" id="primary-nav" aria-label="Main navigation">
+          <a href="index.html#portfolio" class="active">Projects</a
+          ><a href="index.html#about">About</a
+          ><a href="index.html#lifestyles">Beyond code</a
+          ><a href="index.html#contact"
+            >Contact <span aria-hidden="true">↗</span></a
+          >
+        </nav>
+        <div class="header-controls">
+          <button
+            class="icon-button motion-toggle"
+            type="button"
+            aria-label="Pause animations"
+            title="Pause animations"
+            hidden
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <g class="motion-pause"><path d="M8 5v14M16 5v14" /></g>
+              <path class="motion-play" d="m8 5 11 7-11 7Z" />
+            </svg>
+          </button>
+          <button
+            class="icon-button theme-toggle"
+            type="button"
+            aria-label="Switch to light theme"
+            title="Switch to light theme"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="12" cy="12" r="4" />
+              <path
+                d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"
+              />
+            </svg></button
+          ><button
+            class="icon-button menu-toggle"
+            type="button"
+            aria-label="Open navigation"
+            aria-expanded="false"
+            aria-controls="primary-nav"
+          >
+            <span></span><span></span>
+          </button>
+        </div>
+      </div>
+    </header>
+    <main id="main">
+      <section class="case-hero container" aria-labelledby="case-title">
+        <a class="back-link" href="index.html#portfolio"
+          >← Back to selected work</a
+        >
+        <p class="eyebrow">
+          <span class="status-dot" aria-hidden="true"></span> PROJECT OVERVIEW /
+          AI × FINANCIAL TECHNOLOGY
+        </p>
+        <h1 id="case-title">Financial Agent<span class="accent">.</span></h1>
+        <p class="lead">
+          Turning unstructured trade alerts into a structured, risk-aware
+          workflow—from the first signal to strategy evaluation.
+        </p>
+        <dl class="case-meta">
+          <div>
+            <dt>PROJECT TYPE</dt>
+            <dd>Personal engineering project</dd>
+          </div>
+          <div>
+            <dt>FOCUS</dt>
+            <dd>AI · Trading systems · Full-stack development</dd>
+          </div>
+          <div>
+            <dt>DEPLOYMENT</dt>
+            <dd>Self-hosted, single-tenant</dd>
+          </div>
+        </dl>
+      </section>
+      <section class="case-workflow" aria-labelledby="workflow-title">
+        <div class="container">
+          <p class="eyebrow">THE WORKFLOW</p>
+          <h2 id="workflow-title">From signal to strategy.</h2>
+          <ol class="workflow-grid">
+            <li>
+              <span class="mono">01 / INGEST</span>
+              <h3>Capture the context</h3>
+              <p>
+                Listen for Discord trade alerts and bring text and chart images
+                into a common processing pipeline.
+              </p>
+            </li>
+            <li>
+              <span class="mono">02 / INTERPRET</span>
+              <h3>Make it structured</h3>
+              <p>
+                Use AI to extract contract details from text and interpret chart
+                patterns, key levels, and trade context.
+              </p>
+            </li>
+            <li>
+              <span class="mono">03 / EVALUATE</span>
+              <h3>Apply the policy</h3>
+              <p>
+                Check position sizing, spending limits, loss limits, and trader
+                eligibility against account-level risk settings.
+              </p>
+            </li>
+            <li>
+              <span class="mono">04 / LEARN</span>
+              <h3>Test and review</h3>
+              <p>
+                Compare paper-trading strategies, review performance, and
+                inspect the workflow in a dedicated dashboard.
+              </p>
+            </li>
+          </ol>
+        </div>
+      </section>
+      <section class="case-content container" aria-labelledby="challenge-title">
+        <div>
+          <p class="eyebrow">01 / THE CHALLENGE</p>
+          <h2 id="challenge-title">A signal is only<br />the beginning.</h2>
+        </div>
+        <div class="case-prose">
+          <p>
+            A trade alert is usually a short, informal message. Turning it into
+            something a system can evaluate means resolving contract details,
+            interpreting context, applying risk constraints, and keeping a
+            record of what happened.
+          </p>
+          <p>
+            I built Financial Agent to connect these steps in one observable
+            system, with paper trading and performance review built into the
+            workflow.
+          </p>
+          <h3>AI with a review loop</h3>
+          <p>
+            A language-model parser extracts structured option data. A vision
+            model interprets chart-image alerts. Ambiguous parses can be
+            reviewed and corrected in the dashboard, with corrections captured
+            for later analysis.
+          </p>
+          <h3>Risk policies before execution</h3>
+          <p>
+            The risk engine supports per-trade spend limits, stop-loss and trim
+            settings, daily loss limits, ticker restrictions, and trader
+            eligibility gates. Account-specific policies allow the same signal
+            to be evaluated under different constraints.
+          </p>
+          <h3>Paper trading as a comparison tool</h3>
+          <p>
+            Signals are evaluated across current, suggested, and baseline paper
+            strategies. Fill models and shadow orders help compare assumptions
+            with observed executions. Live brokerage execution is a separate,
+            gated capability.
+          </p>
+        </div>
+      </section>
+      <section
+        class="case-content container"
+        aria-labelledby="architecture-title"
+      >
+        <div>
+          <p class="eyebrow">02 / THE ENGINEERING</p>
+          <h2 id="architecture-title">
+            Connected services.<br />A shared picture.
+          </h2>
+        </div>
+        <div class="case-prose">
+          <p>
+            A Next.js dashboard presents the agent’s activity. A FastAPI backend
+            handles the financial workflow, while an Express gateway relays
+            status updates. PostgreSQL stores durable records, and Redis
+            supports live state and messaging.
+          </p>
+          <figure class="architecture">
+            <div class="architecture-row single">
+              <span>Next.js / React dashboard</span>
+            </div>
+            <div class="architecture-arrow" aria-hidden="true">↕</div>
+            <div class="architecture-row">
+              <span>FastAPI · Agent workflow</span
+              ><span>Express · Status gateway</span>
+            </div>
+            <div class="architecture-arrow" aria-hidden="true">↕</div>
+            <div class="architecture-row">
+              <span>PostgreSQL · Records</span><span>Redis · Live state</span>
+            </div>
+            <figcaption class="muted">
+              Simplified architecture. A separate Discord listener feeds trade
+              alerts into the backend pipeline.
+            </figcaption>
+          </figure>
+          <ul class="tags" aria-label="Technology stack">
+            <li>Python</li>
+            <li>FastAPI</li>
+            <li>Next.js</li>
+            <li>React</li>
+            <li>Express</li>
+            <li>PostgreSQL</li>
+            <li>Redis</li>
+            <li>Docker</li>
+          </ul>
+        </div>
+      </section>
+      <section
+        class="case-content container"
+        aria-labelledby="operations-title"
+      >
+        <div>
+          <p class="eyebrow">03 / OPERATING THE SYSTEM</p>
+          <h2 id="operations-title">Make every step<br />inspectable.</h2>
+        </div>
+        <div class="case-prose">
+          <h3>A dashboard for the whole workflow</h3>
+          <p>
+            Signal review, account summaries, strategy comparisons, analytics,
+            and subscription-cost tracking bring the moving parts together.
+          </p>
+          <h3>Health checks and reporting</h3>
+          <p>
+            Pre-market checks inspect the pipeline, record health reports, and
+            surface issues. Quote-coverage checks and performance reporting make
+            the system easier to monitor and maintain.
+          </p>
+          <h3>About this overview</h3>
+          <p>
+            This page presents the engineering behind a private, self-hosted
+            project. The repository and operational dashboard are private; this
+            overview does not provide live trading access or report investment
+            returns.
+          </p>
+        </div>
+      </section>
+      <section class="case-end container" aria-labelledby="case-contact-title">
+        <p class="eyebrow">KEEP THE CONVERSATION GOING</p>
+        <h2 id="case-contact-title">Interested in the engineering?</h2>
+        <p>
+          I’m happy to talk about intelligent systems, financial infrastructure,
+          and building useful software.
+        </p>
+        <div class="button-row">
+          <a class="button button-primary" href="index.html#contact"
+            >Let’s talk <span aria-hidden="true">↗</span></a
+          ><a class="button button-quiet" href="index.html#portfolio"
+            >View all projects <span aria-hidden="true">→</span></a
+          >
+        </div>
+      </section>
+    </main>
+    <footer class="footer container">
+      <a class="brand" href="index.html"
+        ><span class="brand-mark" aria-hidden="true">zq<span>.</span></span
+        ><span>Curiosity, by design.</span></a
+      >
+      <p>© <span data-year>2026</span> Zijie Qiu</p>
+      <a class="text-link" href="index.html#portfolio">Back to projects ↗</a>
+    </footer>
+  </body>
+</html>

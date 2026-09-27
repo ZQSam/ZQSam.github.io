@@ -6,13 +6,13 @@ module.exports = {
   mode: "development",
   devtool: "source-map",
   devServer: {
-    static: { directory: path.resolve(__dirname, 'build') },
+    static: { directory: path.resolve(__dirname, "build") },
     open: true,
     hot: true,
     host: "localhost",
-    watchFiles: 'index.html',
+    watchFiles: "src/**/*.html",
   },
-  context: path.join(__dirname, 'src'),
+  context: path.join(__dirname, "src"),
   entry: "./index.js",
   module: {
     rules: [
@@ -31,22 +31,43 @@ module.exports = {
       {
         test: /\.html$/i,
         loader: "html-loader",
+        // Keep readable asset URLs; CopyPlugin emits each static asset once.
+        options: { sources: false },
       },
     ],
   },
   plugins: [
     new CopyPlugin({
       patterns: [
-        { from: './assets/', to: './assets/' },
+        {
+          from: "./assets/",
+          to: "./assets/",
+          globOptions: {
+            ignore: [
+              "**/bg-*",
+              "**/3.png",
+              "**/4.jpeg",
+              "**/5.png",
+              "**/6.jpeg",
+            ],
+          },
+        },
+        { from: "./.nojekyll", to: "./.nojekyll", noErrorOnMissing: true },
       ],
     }),
     new HtmlWebpackPlugin({
       template: "index.html",
-      inject: 'body',
+      inject: "body",
+    }),
+    new HtmlWebpackPlugin({
+      template: "financial-agent.html",
+      filename: "financial-agent.html",
+      inject: "body",
     }),
   ],
   output: {
-    filename: 'bundle.js',
+    filename: "bundle.js",
     path: path.resolve(__dirname, "build"),
+    clean: true,
   },
 };

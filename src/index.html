@@ -1,275 +1,777 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Personal portfolio of Zijie Qiu showcasing programming, photography, and design skills.">
-  <meta name="keywords" content="Zijie Qiu, portfolio, programming, photography, projects, UCSD">
-  <meta name="author" content="Zijie Qiu">
-  <meta property="og:title" content="Zijie Qiu | Personal Portfolio">
-  <meta property="og:description" content="AI and Machine Learning Enthusiast - Explore projects on AI, ML, and web development.">
-  <meta property="og:image" content="assets//pfp.jpg">
-  <meta property="og:url" content="https://zqsam.github.io">
-  <meta property="og:type" content="website">
-
-  <title>Zijie Qiu</title>
-
-  <!-- web icon -->
-  <link rel="icon" type="image/jpg" href="assets//favicon.ico">
-
-  <!-- box icons -->
-  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <!-- custom css will be injected by Webpack -->
-</head>
-<body>
-  <!-- header design -->
-  <header class="header">
-    <a href="#" class="logo">Sam's Basement</a>
-
-    <i class='bx bx-menu' id="menu-icon"></i>
-
-    <nav class="navbar">
-      <a href="#home" class="active">Home</a>
-      <a href="#about">About</a>
-      <a href="#lifestyles">Lifestyles</a>
-      <a href="#portfolio">Portfolio</a>
-      <a href="#contact">Contact</a>
-    </nav>
-    <!-- Dark Mode Toggle Button with Icon -->
-    <button id="dark-mode-toggle" class="btn">
-      <i class='bx bx-moon'></i>
-    </button>
-  </header>
-
-  <!-- home section design -->
-  <section class="home" id="home">
-    <video id="home-bg-video" class="home-bg-video" src="assets/bg-video.mp4" muted playsinline loop preload="auto" aria-hidden="true"></video>
-    <div class="home-content">
-      <h3>Hello, My name is</h3>
-      <h1>Zijie Qiu</h1>
-      <h3>And I'm a <span class="multiple-text"></span></h3>
-      <p>You may call me <span>Sam</span> as I go by this English name!</p>
-      <div class="social-media">
-        <a href="https://www.linkedin.com/in/zijie-qiu-21209a265" target="_blank">
-          <i class='bx bxl-linkedin' ></i>
-        </a>
-        
-        <a href="https://www.instagram.com/sleepyrat_qiu/" target="_blank">
-          <i class='bx bxl-instagram' ></i>
-        </a>
-
-        <a href="https://github.com/ZQSam" target="_blank">
-          <i class='bx bxl-github'></i>
-        </a>
-
-        <a href="#" id="icon-link">
-          <i class="fa fa-wechat"></i>
-        </a>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Zijie (Sam) Qiu — computer science, intelligent systems, and financial technology. Explore my engineering projects and creative work."
+    />
+    <meta name="author" content="Zijie Qiu" />
+    <meta
+      property="og:title"
+      content="Zijie Qiu | Code, intelligence & finance"
+    />
+    <meta
+      property="og:description"
+      content="Building thoughtful software at the intersection of computer science, AI, and finance."
+    />
+    <meta
+      property="og:image"
+      content="https://zqsam.github.io/assets/about.JPG"
+    />
+    <meta property="og:url" content="https://zqsam.github.io/" />
+    <meta property="og:type" content="website" />
+    <meta name="theme-color" content="#101413" />
+    <link rel="canonical" href="https://zqsam.github.io/" />
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+    <title>Zijie Qiu | Code, intelligence & finance</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="header">
+      <div class="container header-inner">
+        <a class="brand" href="#home" aria-label="Zijie Qiu, home"
+          ><span class="brand-mark" aria-hidden="true">zq<span>.</span></span
+          ><span>Zijie Qiu<span class="brand-alias"> / Sam</span></span></a
+        >
+        <nav class="navbar" id="primary-nav" aria-label="Main navigation">
+          <a href="#portfolio">Projects</a><a href="#about">About</a
+          ><a href="#lifestyles">Beyond code</a
+          ><a href="#contact">Contact <span aria-hidden="true">↗</span></a>
+        </nav>
+        <div class="header-controls">
+          <button
+            class="icon-button motion-toggle"
+            type="button"
+            aria-label="Pause animations"
+            title="Pause animations"
+            hidden
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <g class="motion-pause"><path d="M8 5v14M16 5v14" /></g>
+              <path class="motion-play" d="m8 5 11 7-11 7Z" />
+            </svg>
+          </button>
+          <button
+            class="icon-button theme-toggle"
+            type="button"
+            aria-label="Switch to light theme"
+            title="Switch to light theme"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="12" cy="12" r="4" />
+              <path
+                d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"
+              />
+            </svg></button
+          ><button
+            class="icon-button menu-toggle"
+            type="button"
+            aria-label="Open navigation"
+            aria-expanded="false"
+            aria-controls="primary-nav"
+          >
+            <span></span><span></span>
+          </button>
+        </div>
       </div>
-      <!-- <a href="#" class="btn">Download CV</a> -->
-    </div>
-    <!-- Art Creator Gallery (moved into the lifestyles box) -->
-
-    <div id="image-popup">
-      <img src="./assets//wechatQRcode.JPG" alt="WeChat QR code">
-    </div>
-    
-    <div class="home-img">
-      <img src="assets//pfp.jpg" alt="homepage-picture" loading="lazy">
-    </div>
-  </section>
-
-  <!-- about section design -->
-  <section class="about" id="about">
-    <div class="about-img">
-      <img src="assets//about.JPG" alt="about">
-    </div>
-
-    <div class="about-content">
-      <h2 class="heading">About <span>Me</span></h2>
-      <h3>Academic and Professional Journey</h3>
-      <p>
-        I am currently pursuing a Master's degree in <span>Computer Science</span> at the <span>University of Illinois at Urbana-Champaign (UIUC)</span>, having previously earned my Bachelor's in Mathematics-Computer Science from UC San Diego. 
-        <br /><br />
-        My technical focus lies at the intersection of machine learning and autonomous systems, with a particular interest in navigation, reinforcement learning, and state abstraction. I enjoy tackling complex, system-level challenges, drawing on my backend engineering experience at Vipshop and OfSpectrum, where I designed scalable e-commerce features and built robust event notification systems from the ground up.
-        <br /><br />
-        Whether I am developing full-stack web platforms, exploring C++ game development, or serving as a teaching assistant for advanced data structures, I am driven by a passion for building accessible, data-driven solutions that bridge the gap between theoretical algorithms and real-world applications.
-      </p>
-      <!-- <a href="#" class="btn">Read More</a> -->
-    </div>
-  </section>
-
-  <!-- lifestyle section design -->
-  <section class="lifestyles" id="lifestyles">
-    <h2 class="heading">My <span>Lifestyles</span></h2>
-
-    <div class="lifestyles-container">
-      <div class="lifestyles-box">
-        <i class='bx bx-code-block'></i>
-        <h3>Programmer</h3>
-        <p>I have developed strong programming skills in languages such as Java, Python, C++, and JavaScript, 
-          along with web development frameworks like React and Vue. My work ranges from building scalable 
-          applications to implementing advanced algorithms for AI and machine learning models.
-        </p>
-        <!-- <a href="#" class="btn">Read More</a> -->
+    </header>
+    <main id="main">
+      <section class="hero container" id="home" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="eyebrow">
+            <span class="status-dot" aria-hidden="true"></span> SOFTWARE
+            ENGINEERING · AI · FINANCE
+          </p>
+          <h1 id="hero-title">
+            Curiosity in.<br />Intelligence <span class="accent">out.</span>
+          </h1>
+          <p class="hero-intro">
+            Hi, I’m Zijie. You can call me <strong>Sam.</strong>
+          </p>
+          <p class="hero-description">
+            I build software that turns complex data into useful systems.
+            Exploring the space between computer science, artificial
+            intelligence, and financial technology.
+          </p>
+          <div class="button-row">
+            <a class="button button-primary" href="#portfolio"
+              >Explore my work <span aria-hidden="true">↗</span></a
+            ><a class="button button-quiet" href="#about"
+              >A little about me <span aria-hidden="true">→</span></a
+            >
+          </div>
+          <div class="hero-note">
+            <span class="mono">CURRENTLY</span
+            ><span
+              >Master’s in Computer Science
+              <span class="muted">/</span> UIUC</span
+            >
+          </div>
+        </div>
+        <div
+          class="system-art"
+          role="img"
+          aria-label="An abstract processor connecting code, artificial intelligence, and finance"
+        >
+          <div class="art-heading mono">
+            <span><span class="tiny-cross">+</span> CONNECTING THE DOTS</span
+            ><span>FIG. 01</span>
+          </div>
+          <svg
+            class="circuit-art"
+            viewBox="0 0 520 430"
+            fill="none"
+            aria-hidden="true"
+          >
+            <defs>
+              <pattern
+                id="dot-grid"
+                x="0"
+                y="0"
+                width="22"
+                height="22"
+                patternUnits="userSpaceOnUse"
+              >
+                <circle cx="1" cy="1" r="1" fill="currentColor" opacity=".18" />
+              </pattern>
+              <linearGradient
+                id="chip-fill"
+                x1="140"
+                y1="140"
+                x2="370"
+                y2="300"
+                gradientUnits="userSpaceOnUse"
+              >
+                <stop stop-color="var(--chip-top)" />
+                <stop offset="1" stop-color="var(--surface)" />
+              </linearGradient>
+            </defs>
+            <rect width="520" height="430" fill="url(#dot-grid)" />
+            <g stroke="currentColor" opacity=".18">
+              <path d="m260 47 217 125v131L260 428 43 303V172Z" />
+              <path d="M43 172 260 297l217-125M260 297v131" />
+              <path d="m260 91 180 104v85L260 384 80 280v-85Z" />
+            </g>
+            <g stroke="var(--accent)" stroke-width="1.5" opacity=".4">
+              <path d="M159 212 84 169v-54L44 92" />
+              <path d="m204 290-54 31v45l-47 27" />
+              <path d="m366 210 71-41v-59l39-23" />
+              <path d="m317 282 83 48v35l60 35" />
+              <path d="M259 132V72l47-27" />
+            </g>
+            <g
+              class="circuit-signal"
+              stroke="var(--accent)"
+              stroke-width="2.5"
+              stroke-linecap="round"
+            >
+              <path
+                class="ambient-motion"
+                pathLength="100"
+                d="M159 212 84 169v-54L44 92"
+              />
+              <path
+                class="ambient-motion"
+                pathLength="100"
+                d="m204 290-54 31v45l-47 27"
+              />
+              <path
+                class="ambient-motion"
+                pathLength="100"
+                d="m366 210 71-41v-59l39-23"
+              />
+              <path
+                class="ambient-motion"
+                pathLength="100"
+                d="m317 282 83 48v35l60 35"
+              />
+              <path
+                class="ambient-motion"
+                pathLength="100"
+                d="M259 132V72l47-27"
+              />
+            </g>
+            <g fill="var(--bg)" stroke="var(--accent)" stroke-width="2">
+              <circle cx="44" cy="92" r="5" />
+              <circle cx="103" cy="393" r="5" />
+              <circle cx="476" cy="87" r="5" />
+              <circle cx="460" cy="400" r="5" />
+              <circle cx="306" cy="45" r="5" />
+            </g>
+            <g class="processor ambient-motion">
+              <path
+                d="m137 239 123-71 123 71v35l-123 71-123-71Z"
+                fill="var(--surface)"
+                stroke="var(--line-strong)"
+              />
+              <path
+                d="m137 239 123 71 123-71M260 310v35"
+                stroke="var(--line-strong)"
+              />
+              <path
+                d="m137 210 123-71 123 71v27l-123 71-123-71Z"
+                fill="var(--surface)"
+                stroke="var(--accent)"
+                stroke-opacity=".4"
+              />
+              <path
+                d="m137 210 123 71 123-71M260 281v27"
+                stroke="var(--accent)"
+                stroke-opacity=".4"
+              />
+              <path
+                d="m137 179 123-71 123 71v26l-123 71-123-71Z"
+                fill="url(#chip-fill)"
+                stroke="var(--accent)"
+              />
+              <path
+                d="m137 179 123 71 123-71M260 250v26"
+                stroke="var(--accent)"
+              />
+              <path
+                d="m166 179 94-54 94 54-94 54Z"
+                stroke="var(--accent)"
+                stroke-opacity=".35"
+              />
+              <g
+                stroke="var(--accent)"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="m227 168-22 12 22 12m66-24 22 12-22 12m-18-34-30 48" />
+              </g>
+            </g>
+            <g class="market-bars" stroke="var(--accent)" stroke-width="3">
+              <path class="ambient-motion" d="M358 94V78" />
+              <path class="ambient-motion" d="M368 99V69" />
+              <path class="ambient-motion" d="M378 93V55" />
+              <path class="ambient-motion" d="M388 84V63" />
+              <path class="ambient-motion" d="M398 75V43" />
+            </g>
+            <g class="orbit-dot ambient-motion" fill="var(--accent)">
+              <circle cx="84" cy="142" r="3" />
+              <circle cx="400" cy="345" r="3" />
+            </g>
+          </svg>
+          <span class="art-label label-code mono">&lt;/&gt; CODE</span
+          ><span class="art-label label-finance mono">↗ FINANCE</span
+          ><span class="art-label label-ai mono">✳ INTELLIGENCE</span>
+          <div class="art-footer mono">
+            <span>DATA → LOGIC → POSSIBILITY</span
+            ><span class="accent">[ ZQ ]</span>
+          </div>
+        </div>
+      </section>
+      <div class="focus-strip">
+        <div class="container focus-inner">
+          <span class="mono muted">AREAS OF EXPLORATION</span
+          ><span>Intelligent systems</span><span aria-hidden="true">✳</span
+          ><span>Financial technology</span><span aria-hidden="true">✳</span
+          ><span>Full-stack engineering</span>
+        </div>
       </div>
 
-      <div class="lifestyles-box" data-gallery="art">
-        <i class='bx bxs-camera' ></i>
-        <h3>Art Creator</h3>
-        <p>
-          Beyond programming, I am passionate about visual storytelling through photography and videography. 
-          My creative projects allow me to experiment with different mediums and share compelling narratives.</p>
-        <!-- Read More opens the in-section gallery/carousel -->
-        <button class="btn read-more" data-gallery="art">Read More</button>
-        <!-- Art Creator Gallery (markup kept here for authoring) -->
-        <div id="lifestyles-gallery" class="gallery-overlay" aria-hidden="true">
-          <div class="gallery-container">
-            <button class="gallery-arrow left" aria-label="Previous slide">‹</button>
-            <div class="gallery-slides">
-              <div class="slide" data-index="0">
-                <img src="assets//4.jpeg" alt="Slide 1">
-              </div>
-              <div class="slide" data-index="1">
-                <img src="assets//5.png" alt="Slide 2">
-              </div>
-              <div class="slide" data-index="2">
-                <img src="assets//3.png" alt="Slide 3">
+      <section
+        class="section container"
+        id="portfolio"
+        aria-labelledby="projects-title"
+      >
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">01 / SELECTED WORK</p>
+            <h2 id="projects-title">Ideas, put to work.</h2>
+          </div>
+          <p>
+            A selection of projects across AI,<br />software, and the physical
+            world.
+          </p>
+        </div>
+        <article class="featured-project">
+          <div class="featured-copy">
+            <p class="eyebrow accent">
+              <span class="status-dot" aria-hidden="true"></span> FEATURED
+              PROJECT
+            </p>
+            <h3>Financial Agent<span class="accent">.</span></h3>
+            <p>
+              An options-trading copilot that brings signal parsing, risk
+              checks, and paper trading into one connected system.
+            </p>
+            <ul class="tags" aria-label="Technologies">
+              <li>Python</li>
+              <li>FastAPI</li>
+              <li>Next.js</li>
+              <li>PostgreSQL</li>
+            </ul>
+            <a class="text-link" href="financial-agent.html"
+              >Explore the project <span aria-hidden="true">↗</span></a
+            >
+          </div>
+          <div
+            class="agent-preview"
+            aria-label="Financial Agent workflow overview"
+          >
+            <div class="preview-top mono">
+              <span
+                ><span class="status-dot" aria-hidden="true"></span> FINANCIAL
+                AGENT</span
+              ><span>WORKFLOW</span>
+            </div>
+            <div class="preview-title">
+              <span>From signal to strategy.</span
+              ><span class="preview-symbol" aria-hidden="true">⌁</span>
+            </div>
+            <ol class="pipeline">
+              <li>
+                <span class="pipeline-icon" aria-hidden="true">01</span>
+                <div>
+                  <strong>Read the signal</strong
+                  ><span>Trade alerts → structured data</span>
+                </div>
+                <span class="pipeline-check" aria-hidden="true">↗</span>
+              </li>
+              <li>
+                <span class="pipeline-icon" aria-hidden="true">02</span>
+                <div>
+                  <strong>Check the risk</strong
+                  ><span>Position sizing & account policies</span>
+                </div>
+                <span class="pipeline-check" aria-hidden="true">↗</span>
+              </li>
+              <li>
+                <span class="pipeline-icon" aria-hidden="true">03</span>
+                <div>
+                  <strong>Test the strategy</strong
+                  ><span>Paper trading & performance review</span>
+                </div>
+                <span class="pipeline-check" aria-hidden="true">↗</span>
+              </li>
+            </ol>
+            <div class="preview-bottom mono">
+              <span>OBSERVE. EVALUATE. ITERATE.</span
+              ><span aria-hidden="true">▥</span>
+            </div>
+          </div>
+        </article>
+        <div class="project-grid">
+          <article class="project-card">
+            <div class="project-image">
+              <img
+                src="assets/fake_news_fb_event_cover.png"
+                alt="Illustration for the Fake News Detection project"
+                loading="lazy"
+              /><span class="image-index mono">02 / MACHINE LEARNING</span>
+            </div>
+            <div class="project-copy">
+              <h3>
+                <a
+                  href="https://github.com/ZQSam/Fake-News-Detection"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Fake News Detection <span aria-hidden="true">↗</span></a
+                >
+              </h3>
+              <p>
+                Using machine learning to distinguish fake news from credible
+                articles.
+              </p>
+              <ul class="tags">
+                <li>Machine learning</li>
+                <li>NLP</li>
+              </ul>
+            </div>
+          </article>
+          <article class="project-card">
+            <div class="project-image">
+              <img
+                src="assets/First Project Pic.jpg"
+                alt="Line-following robot built for the ECE 5 final project"
+                loading="lazy"
+              /><span class="image-index mono">03 / AUTONOMOUS SYSTEMS</span>
+            </div>
+            <div class="project-copy">
+              <h3>
+                <a
+                  href="https://sites.google.com/ucsd.edu/ece5-finalproject/home"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Line Following Robot <span aria-hidden="true">↗</span></a
+                >
+              </h3>
+              <p>
+                Bringing software into the physical world with a robot that
+                follows a marked path.
+              </p>
+              <ul class="tags">
+                <li>Robotics</li>
+                <li>Control systems</li>
+              </ul>
+            </div>
+          </article>
+          <article class="project-card">
+            <div class="project-image">
+              <img
+                src="assets/scavengerHunt.jpg"
+                alt="Scavenger Hunt game project artwork"
+                loading="lazy"
+              /><span class="image-index mono">04 / WEB DEVELOPMENT</span>
+            </div>
+            <div class="project-copy">
+              <h3>
+                <a
+                  href="https://github.com/jel084/CSE-110-Team-2"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Scavenger Hunt <span aria-hidden="true">↗</span></a
+                >
+              </h3>
+              <p>
+                A collaborative web game built around discovery, exploration,
+                and a race against time.
+              </p>
+              <ul class="tags">
+                <li>Web application</li>
+                <li>Team project</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+        <a
+          class="text-link all-projects"
+          href="https://github.com/ZQSam"
+          target="_blank"
+          rel="noopener noreferrer"
+          >More on GitHub <span aria-hidden="true">↗</span></a
+        >
+      </section>
+
+      <section
+        class="section about-section"
+        id="about"
+        aria-labelledby="about-title"
+      >
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">02 / THE PERSON BEHIND THE CODE</p>
+              <h2 id="about-title">A builder at heart.</h2>
+            </div>
+          </div>
+          <div class="about-grid">
+            <figure class="portrait">
+              <img
+                src="assets/graduation-portrait.jpg"
+                alt="Sam in graduation attire beside his reflection in a glass wall"
+                width="1332"
+                height="2000"
+                loading="lazy"
+              />
+              <figcaption>
+                <span>Zijie Qiu <span class="muted">/ Sam</span></span
+                ><span class="mono">ALWAYS CURIOUS ↗</span>
+              </figcaption>
+            </figure>
+            <div class="about-copy">
+              <h3>
+                From understanding algorithms<br />to building what comes next.
+              </h3>
+              <p>
+                I’m pursuing a Master’s in Computer Science at the University of
+                Illinois Urbana-Champaign, after earning my Bachelor’s in
+                Mathematics–Computer Science at UC San Diego.
+              </p>
+              <p>
+                My interests span machine learning, autonomous systems, and
+                financial technology. I’m especially drawn to navigation,
+                reinforcement learning, and turning complex ideas into practical
+                software.
+              </p>
+              <p>
+                At Vipshop and OfSpectrum, I worked on backend systems, scalable
+                e-commerce features, and event notifications. As a teaching
+                assistant and mentor, I also enjoy helping others find their way
+                through challenging problems.
+              </p>
+              <div class="education">
+                <div>
+                  <span class="mono accent">NOW</span>
+                  <div>
+                    <strong>University of Illinois Urbana-Champaign</strong
+                    ><span>Master’s · Computer Science</span>
+                  </div>
+                </div>
+                <div>
+                  <span class="mono muted">FOUNDATION</span>
+                  <div>
+                    <strong>University of California San Diego</strong
+                    ><span>Bachelor’s · Mathematics–Computer Science</span>
+                  </div>
+                </div>
               </div>
             </div>
-            <button class="gallery-arrow right" aria-label="Next slide">›</button>
           </div>
-          <div class="gallery-dots"></div>
+          <div class="expertise-grid">
+            <div>
+              <span class="expertise-icon mono">&lt;/&gt;</span>
+              <h3>Software engineering</h3>
+              <p>
+                Python, Java, C++, JavaScript.<br />From backend services to
+                React and Vue interfaces.
+              </p>
+            </div>
+            <div>
+              <span class="expertise-icon mono">[✳]</span>
+              <h3>Intelligent systems</h3>
+              <p>
+                Machine learning, reinforcement learning, and autonomous
+                navigation.
+              </p>
+            </div>
+            <div>
+              <span class="expertise-icon mono">↗_</span>
+              <h3>Financial technology</h3>
+              <p>
+                AI-assisted signal analysis, trading infrastructure, and
+                risk-aware automation.
+              </p>
+            </div>
+          </div>
         </div>
-      </div>
+      </section>
 
-      <div class="lifestyles-box">
-        <i class='bx bxs-graduation' ></i>
-        <h3>Leader & Mentor</h3>
-        <p>
-          As a tutor and CSSA committee member, I have supported my peers through mentorship and leadership roles, 
-          demonstrating my commitment to fostering learning communities and promoting collaboration.</p>
-        <!-- <a href="#" class="btn">Read More</a> -->
-      </div>
-
-      <!-- <div class="lifestyles-box">
-        <i class='bx bx-comment-x'></i>
-        <h3>Mistake Maker</h3>
-        <p>If you ever ask me how to learn something, I would say 
-          "learn by your mistakes".</p>
-        <a href="#" class="btn">Read More</a>
-      </div> -->
-      
-    </div>
-  </section>
-
-  <!-- portfolio section design -->
-  <section class="portfolio" id="portfolio">
-    <h2 class="heading">Latest <span>Project</span></h2>
-    <div class="portfolio-container">
-      <div class="portfolio-box">
-        <img src="assets//First Project Pic.jpg" alt="1">
-        <div class="portfolio-layer">
-          <h4>Line Following Robot</h4>
-          <p>A line following robot that can follow a black line on a white background.</p>
-          <a href="https://sites.google.com/ucsd.edu/ece5-finalproject/home" target="_blank">
-            <i class='bx bx-link'></i>
-          </a>
+      <section
+        class="section container beyond-section"
+        id="lifestyles"
+        aria-labelledby="beyond-title"
+      >
+        <div class="beyond-copy">
+          <p class="eyebrow">03 / BEYOND THE TERMINAL</p>
+          <h2 id="beyond-title">A different<br />kind of focus.</h2>
+          <p>
+            When I step away from code, I pick up a camera. Photography and
+            videography give me another way to explore, notice the details, and
+            tell a story.
+          </p>
+          <div class="button-row">
+            <button
+              class="button button-secondary"
+              type="button"
+              data-open-dialog="photo-gallery"
+            >
+              Through my lens <span aria-hidden="true">↗</span></button
+            ><a
+              class="text-link"
+              href="https://www.instagram.com/sleepyrat_qiu/"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Instagram <span aria-hidden="true">↗</span></a
+            >
+          </div>
+          <div class="mentor-note">
+            <span class="mono accent">SHARING WHAT I LEARN</span>
+            <p>
+              Teaching, tutoring, and CSSA leadership have taught me that good
+              work starts with people learning together.
+            </p>
+          </div>
         </div>
-      </div>
+        <figure class="creative-photo">
+          <img
+            src="assets/about.JPG"
+            alt="Sam outdoors at sunset with a camera"
+            width="4032"
+            height="3024"
+            loading="lazy"
+          />
+          <figcaption class="mono">
+            OFFLINE, WITH A CAMERA. <span aria-hidden="true">↗</span>
+          </figcaption>
+        </figure>
+      </section>
 
-      <div class="portfolio-box">
-        <img src="assets//fake_news_fb_event_cover.png" alt="2">
-        <div class="portfolio-layer">
-          <h4>Fake News Detection</h4>
-          <p>A machine learning model that can detect fake news articles.</p>
-          <a href="https://github.com/ZQSam/Fake-News-Detection" target="_blank">
-            <i class='bx bx-link'></i>
-          </a>
+      <section
+        class="section contact-section"
+        id="contact"
+        aria-labelledby="contact-title"
+      >
+        <div class="container contact-grid">
+          <div>
+            <p class="eyebrow">04 / START A CONVERSATION</p>
+            <h2 id="contact-title">
+              Good things start<br />with <span class="accent">hello.</span>
+            </h2>
+            <p class="contact-intro">
+              Have an interesting project, a question, or a shared curiosity?
+              I’d love to hear from you.
+            </p>
+            <div class="contact-links">
+              <a
+                class="text-link"
+                href="https://www.linkedin.com/in/zijie-qiu-21209a265"
+                target="_blank"
+                rel="noopener noreferrer"
+                >LinkedIn ↗</a
+              ><a
+                class="text-link"
+                href="https://github.com/ZQSam"
+                target="_blank"
+                rel="noopener noreferrer"
+                >GitHub ↗</a
+              ><button
+                class="text-link"
+                type="button"
+                data-open-dialog="wechat-dialog"
+              >
+                WeChat ↗
+              </button>
+            </div>
+          </div>
+          <form
+            class="contact-form"
+            action="https://formspree.io/f/mayryzpn"
+            method="POST"
+          >
+            <div class="form-row">
+              <label
+                >Your name<input
+                  type="text"
+                  name="full-name"
+                  autocomplete="name"
+                  placeholder="Sam Smith"
+                  required /></label
+              ><label
+                >Email address<input
+                  type="email"
+                  name="email"
+                  autocomplete="email"
+                  placeholder="sam@example.com"
+                  required
+              /></label>
+            </div>
+            <div class="form-row">
+              <label
+                >Subject<input
+                  type="text"
+                  name="title"
+                  placeholder="Let’s build something"
+                  required /></label
+              ><label
+                >Phone <span class="muted">(optional)</span
+                ><input
+                  type="tel"
+                  name="phone"
+                  autocomplete="tel"
+                  placeholder="Your phone number"
+              /></label>
+            </div>
+            <label
+              >Your message<textarea
+                name="textarea"
+                rows="4"
+                placeholder="Tell me what you have in mind…"
+                required
+              ></textarea></label
+            ><input type="hidden" name="_language" value="en" />
+            <div class="form-footer">
+              <span>Delivered directly to my inbox.</span
+              ><button class="button button-primary" type="submit">
+                Send message <span aria-hidden="true">↗</span>
+              </button>
+            </div>
+          </form>
         </div>
+      </section>
+    </main>
+    <footer class="footer container">
+      <a class="brand" href="#home"
+        ><span class="brand-mark" aria-hidden="true">zq<span>.</span></span
+        ><span>Curiosity, by design.</span></a
+      >
+      <p>© <span data-year>2026</span> Zijie Qiu</p>
+      <a class="text-link" href="#home">Back to top ↑</a>
+    </footer>
+    <dialog
+      id="photo-gallery"
+      class="media-dialog"
+      aria-labelledby="gallery-title"
+    >
+      <div class="dialog-heading">
+        <h2 id="gallery-title">Through my lens</h2>
+        <button
+          class="icon-button"
+          type="button"
+          data-close-dialog
+          aria-label="Close gallery"
+        >
+          ×
+        </button>
       </div>
-
-      <div class="portfolio-box">
-        <img src="assets//scavengerHunt.jpg" alt="3">
-        <div class="portfolio-layer">
-          <h4>Scavenger Hunt Game</h4>
-          <p>A game that encourages players to find as many items as possible in a limited time.</p>
-          <a href="https://github.com/jel084/CSE-110-Team-2" target="_blank">
-            <i class='bx bx-link'></i>
-          </a>
-        </div>
+      <div class="gallery-stage">
+        <figure data-slide>
+          <img
+            src="assets/pfp.jpg"
+            alt="Photographing the ocean at sunset"
+            width="1080"
+            height="1620"
+            loading="lazy"
+          />
+          <figcaption>Finding a new perspective by the ocean.</figcaption>
+        </figure>
+        <figure data-slide hidden>
+          <img
+            src="assets/about.JPG"
+            alt="Sam outdoors in the warm light of sunset"
+            width="4032"
+            height="3024"
+            loading="lazy"
+          />
+          <figcaption>Chasing the last light of the day.</figcaption>
+        </figure>
       </div>
-
-      <!-- <div class="portfolio-box">
-        <img src="assets//4.jpeg" alt="4">
-        <div class="portfolio-layer">
-          <h4>Project 4</h4>
-          <p>Not available at this moment.</p>
-          <a href="#"><i class='bx bx-link'></i></a>
-        </div>
+      <div class="gallery-controls">
+        <button
+          class="icon-button"
+          type="button"
+          data-gallery-prev
+          aria-label="Previous photo"
+        >
+          ←</button
+        ><span class="mono" data-gallery-status aria-live="polite">01 / 02</span
+        ><button
+          class="icon-button"
+          type="button"
+          data-gallery-next
+          aria-label="Next photo"
+        >
+          →
+        </button>
       </div>
-
-      <div class="portfolio-box">
-        <img src="assets//5.png" alt="5">
-        <div class="portfolio-layer">
-          <h4>Project 5</h4>
-          <p>Not available at this moment.</p>
-          <a href="#"><i class='bx bx-link'></i></a>
-        </div>
+    </dialog>
+    <dialog
+      id="wechat-dialog"
+      class="media-dialog qr-dialog"
+      aria-labelledby="wechat-title"
+    >
+      <div class="dialog-heading">
+        <h2 id="wechat-title">Connect on WeChat</h2>
+        <button
+          class="icon-button"
+          type="button"
+          data-close-dialog
+          aria-label="Close WeChat QR code"
+        >
+          ×
+        </button>
       </div>
-
-      <div class="portfolio-box">
-        <img src="assets//6.jpeg" alt="6">
-        <div class="portfolio-layer">
-          <h4>Project 6</h4>
-          <p>Not available at this moment.</p>
-          <a href="#"><i class='bx bx-link'></i></a>
-        </div>
-      </div> -->
-    </div>
-  </section>
-
-  <!-- contact section design -->
-  <section class="contact" id="contact">
-    <h2 class="heading">Contact <span>Me</span></h2>
-
-    <form 
-      action="https://formspree.io/f/mayryzpn" 
-      method="POST">
-      <div class="input-box">
-        <input class="input-name" type="text" name="full-name" autocomplete="off" placeholder="Full Name" required>
-        <!-- <label for="full-name" class="text-label">Full Name</label> -->
-        
-        <input type="email" name="email" autocomplete="off" placeholder="Email Address" required>
-        <input type="number" name="phone" autocomplete="off" placeholder="Mobile Number" required>
-        <input type="text" name="title" autocomplete="off" placeholder="Email Subject" required>
-      </div>
-      <textarea class="contact-form-textarea" name="textarea" cols="30" rows="10" 
-      placeholder="Your Message" autocomplete="off" required></textarea>
-      <input type="hidden" name="_language" value="en" />
-      <input type="submit" name="submit-btn" value="Send Message" class="btn">
-    </form>
-  </section>
-
-  <!-- footer design -->
-  <footer class="footer">
-    <div class="footer-text">
-      <p>Copyright &copy; 2025 by Zijie | All Rights Reserved.</p>
-    </div>
-
-    <div class="footer-iconTop">
-      <a href="#home"><i class='bx bxs-chevron-up' ></i></a>
-    </div>
-  </footer>
-
-  <!-- scroll reveal -->
-  <script src="https://unpkg.com/scrollreveal"></script>
-
-  <!-- typed js -->
-  <script src="https://unpkg.com/typed.js@2.0.15/dist/typed.umd.js"></script>
-
-  <!-- custom js will be injected by Webpack -->
-</body>
+      <img
+        src="assets/wechatQRcode.JPG"
+        alt="Scan this QR code to connect with Sam on WeChat"
+        loading="lazy"
+      />
+      <p>Scan the QR code in WeChat to say hello.</p>
+    </dialog>
+  </body>
 </html>

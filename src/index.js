@@ -6,7 +6,9 @@
 // HTML Files
 
 // Stylesheets
-import './css/main.scss';
+import "./css/main.scss";
+import "./css/motion.scss";
 
 // Scripts
-import './js/main.js';
+import "./js/main.js";
+import "./js/motion.js";
