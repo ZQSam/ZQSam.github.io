@@ -11,6 +11,7 @@
   --line-strong: #4e6254;
   --chip-top: #344c3b;
   --header-bg: rgba(16, 20, 19, 0.94);
+  --header-height: 88px;
   --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial,
     sans-serif;
   --mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
@@ -34,7 +35,7 @@
 }
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 100px;
+  scroll-padding-top: var(--header-height);
 }
 body {
   margin: 0;
@@ -107,7 +108,22 @@ h3 {
 }
 .section {
   padding-block: 104px;
-  scroll-margin-top: 12px;
+}
+.hero,
+.section {
+  // Fill the space beneath the header without clipping longer sections.
+  min-height: calc(100vh - var(--header-height));
+  min-height: calc(100svh - var(--header-height));
+}
+#portfolio {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.about-section,
+.contact-section {
+  display: flex;
+  align-items: center;
 }
 .accent {
   color: var(--accent);
@@ -155,7 +171,7 @@ h3 {
   transform: translateY(0);
 }
 .header {
-  height: 88px;
+  height: var(--header-height);
   position: sticky;
   top: 0;
   z-index: 50;
@@ -204,6 +220,7 @@ h3 {
   font-size: 13px;
 }
 .navbar a {
+  position: relative;
   color: var(--muted);
   padding-block: 12px;
   transition: color 0.18s;
@@ -212,8 +229,22 @@ h3 {
 .navbar a.active {
   color: var(--accent);
 }
-.navbar a:last-child {
+.navbar a:last-child:not(.active):not(:hover) {
   color: var(--text);
+}
+.navbar a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 5px;
+  height: 1px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+}
+.navbar a.active::after {
+  transform: scaleX(1);
 }
 .header-controls {
   display: flex;
@@ -1120,14 +1151,14 @@ h2 {
   }
 }
 @media (max-width: 800px) {
+  :root {
+    --header-height: 74px;
+  }
   .container {
     width: calc(100% - 40px);
   }
   .section {
     padding-block: 72px;
-  }
-  .header {
-    height: 74px;
   }
   .header-inner {
     gap: 12px;
@@ -1164,7 +1195,7 @@ h2 {
   .navbar {
     display: none;
     position: absolute;
-    top: 73px;
+    top: calc(var(--header-height) - 1px);
     left: 0;
     width: 100%;
     padding: 12px 20px 22px;

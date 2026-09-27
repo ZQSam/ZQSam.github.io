@@ -62,6 +62,7 @@ const sectionLinks = [...document.querySelectorAll('.navbar a[href^="#"]')];
 const sections = sectionLinks
   .map((link) => document.getElementById(link.hash.slice(1)))
   .filter(Boolean);
+const header = document.querySelector(".header");
 let scrollPending = false;
 function updateActiveSection() {
   const scrollableHeight =
@@ -71,11 +72,21 @@ function updateActiveSection() {
     "--scroll-progress",
     Math.max(0, Math.min(1, progress))
   );
-  const threshold = window.scrollY + 150;
+  // Match native anchor alignment to the sticky header at every breakpoint.
+  const activationLine = (header?.getBoundingClientRect().bottom || 0) + 1;
   let currentId = "";
   sections.forEach((section) => {
-    if (section.offsetTop <= threshold) currentId = section.id;
+    if (section.getBoundingClientRect().top <= activationLine)
+      currentId = section.id;
   });
+  // A short final section may never reach the header before scrolling ends.
+  if (
+    sections.length &&
+    scrollableHeight > 0 &&
+    window.scrollY >= scrollableHeight - 2
+  ) {
+    currentId = sections[sections.length - 1].id;
+  }
   sectionLinks.forEach((link) => {
     const active = link.hash === `#${currentId}`;
     link.classList.toggle("active", active);
@@ -84,18 +95,21 @@ function updateActiveSection() {
   });
   scrollPending = false;
 }
-window.addEventListener(
-  "scroll",
-  () => {
-    if (!scrollPending) {
-      scrollPending = true;
-      requestAnimationFrame(updateActiveSection);
-    }
-  },
-  { passive: true }
-);
-window.addEventListener("load", updateActiveSection);
-window.addEventListener("resize", updateActiveSection);
+function scheduleSectionUpdate() {
+  if (!scrollPending) {
+    scrollPending = true;
+    requestAnimationFrame(updateActiveSection);
+  }
+}
+window.addEventListener("scroll", scheduleSectionUpdate, { passive: true });
+["load", "resize", "pageshow", "hashchange"].forEach((event) => {
+  window.addEventListener(event, scheduleSectionUpdate);
+});
+if ("ResizeObserver" in window) {
+  const layoutObserver = new ResizeObserver(scheduleSectionUpdate);
+  layoutObserver.observe(document.body);
+  if (header) layoutObserver.observe(header);
+}
 updateActiveSection();
 document.querySelectorAll("[data-year]").forEach((element) => {
   element.textContent = new Date().getFullYear();

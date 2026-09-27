@@ -40,17 +40,7 @@
       pointer-events: none;
     }
     .navbar a {
-      position: relative;
       &::after {
-        content: "";
-        position: absolute;
-        left: 0;
-        right: 0;
-        bottom: 5px;
-        height: 1px;
-        background: var(--accent);
-        transform: scaleX(0);
-        transform-origin: left;
         transition: transform 0.3s ease;
       }
       &:hover::after,
